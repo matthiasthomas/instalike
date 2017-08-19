@@ -10,7 +10,8 @@ export class ImagesService {
   static ENDPOINT: string = '/api/image';
 
   get(start, limit): Observable<any> {
-    return this.http.get(ImagesService.ENDPOINT + '/' + start + '/' + limit)
-      .map(r => r.json());
+    return this.http
+      .get(ImagesService.ENDPOINT + '/' + start + '/' + limit)
+      .map(images => images.json());
   }
 }

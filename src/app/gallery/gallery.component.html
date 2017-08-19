@@ -1,3 +1,9 @@
 <p>
-  gallery works!
+  Gallery
 </p>
+
+<div infinite-scroll (scrolled)="getMoreImages()">
+  <div *ngFor="let image of images.list" class="col-md-4 col-sm-6 col-xs-12">
+    <img class="img-fluid" src="files/{{image._id}}.image{{image.extension}}">
+  </div>
+</div>

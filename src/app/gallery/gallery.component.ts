@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ImagesService } from "../images.service";
 
 @Component({
   selector: 'app-gallery',
@@ -7,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GalleryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private imagesService: ImagesService) { }
+  images;
 
   ngOnInit() {
-    
+    this.images = {
+      limit: 30, offset: 0, endOfList: false, loadingInProgress: false, list: []
+    };
+    this.getMoreImages();
   }
 
+  private getMoreImages() {
+    this.imagesService
+      .get(this.images.offset, this.images.limit)
+      .subscribe(images => {
+        if (images.length === 0) {
+          this.images.endOfList = true;
+        } else {
+          this.images.list = this.images.list.concat(images);
+          this.images.offset += this.images.limit;
+        }
+      });
+  }
 }

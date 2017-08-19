@@ -8,7 +8,7 @@ module.exports = class imageController {
         let _file = req.file;
 
         imageDAO
-            .createNew(_image)
+            .createNew(_image, path.extname(_file.originalname))
             .then(image => {
                 return new Promise((resolve, reject) => {
                     fs.move(_file.path, path.join(process.env.APP_FILES_FOLDER, image._id + '.image' + path.extname(_file.originalname)), (err) => {
@@ -19,7 +19,9 @@ module.exports = class imageController {
                 });
             })
             .then(image => res.status(200).send(image))
-            .catch(error => res.status(500).send(error));
+            .catch(error => {
+                res.status(500).send(error)
+            });
     }
 
     static getAll(req, res) {

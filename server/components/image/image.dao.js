@@ -3,12 +3,13 @@ const Promise = require('bluebird');
 const imageSchema = require('./image.model');
 const _ = require('lodash');
 
-imageSchema.statics.createNew = image => {
+imageSchema.statics.createNew = (image, extension) => {
     return new Promise((resolve, reject) => {
         if (!_.isObject(image)) {
             return reject(new TypeError('Image is not a valid object.'));
         }
 
+        image.extension = extension;
         let _image = new Image(image);
         _image.save((err, saved) => {
             return err ?

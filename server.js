@@ -23,15 +23,11 @@ app.use(bodyParser.urlencoded({
 app.use(helmet());
 
 // static path to dist
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(process.env.APP_CLIENT_FOLDER));
+app.use('/files', express.static(process.env.APP_FILES_FOLDER));
 
 const routes = require('./server/index.routes');
 app.use('/api', routes.router);
-
-// Catch all other routes and return the index file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
 
 /**
  * Get port from environment and store in Express.

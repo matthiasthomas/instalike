@@ -28,6 +28,7 @@
     "core-js": "^2.4.1",
     "dotenv-extended": "2.0.1",
     "express": "^4.15.4",
+    "fs-extra": "4.0.1",
     "helmet": "3.8.1",
     "mongoose": "4.11.7",
     "mongoose-unique-validator": "1.0.5",

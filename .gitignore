@@ -44,3 +44,7 @@ Thumbs.db
 
 #env file
 .env
+
+#images and tmp files
+server/tmp
+server/files

@@ -5,9 +5,8 @@ const _ = require('lodash');
 
 userSchema.statics.getAll = () => {
     return new Promise((resolve, reject) => {
-        let _query = {};
         User
-            .find(_query)
+            .find()
             .exec((err, users) => {
                 err ? reject(err)
                     : resolve(users);

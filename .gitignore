@@ -48,3 +48,6 @@ Thumbs.db
 #images and tmp files
 server/tmp
 server/files
+
+#docker
+docker-compose.yml

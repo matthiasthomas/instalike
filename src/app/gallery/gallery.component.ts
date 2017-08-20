@@ -10,12 +10,17 @@ export class GalleryComponent implements OnInit {
 
   constructor(private imagesService: ImagesService) { }
   images;
+  selected_image;
 
   ngOnInit() {
     this.images = {
-      limit: 30, offset: 0, endOfList: false, loadingInProgress: false, list: []
+      limit: 10, offset: 0, endOfList: false, loadingInProgress: false, list: []
     };
     this.getMoreImages();
+  }
+
+  selectImage(image) {
+    this.selected_image = image;
   }
 
   private getMoreImages() {

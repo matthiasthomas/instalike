@@ -8,20 +8,29 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { routing } from './route'
 import { ImagesService } from "./images.service";
 
-import { NguiInfiniteListModule } from '@ngui/infinite-list';
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import { UploadComponent } from './upload/upload.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { RouterModule } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    GalleryComponent
+    GalleryComponent,
+    UploadComponent
   ],
   imports: [
-    NguiInfiniteListModule,
+    InfiniteScrollModule,
     BrowserModule,
     routing,
-    HttpModule
+    HttpModule,
+    RouterModule,
+    FormsModule
   ],
-  providers: [ImagesService],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    ImagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

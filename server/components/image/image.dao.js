@@ -60,6 +60,7 @@ imageSchema.statics.getRange = (start, limit) => {
     return new Promise((resolve, reject) => {
         Image
             .find()
+            .sort('-updated_at')
             .limit(parseInt(limit))
             .skip(parseInt(start))
             .exec((err, images) => {

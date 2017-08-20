@@ -14,4 +14,10 @@ export class ImagesService {
       .get(ImagesService.ENDPOINT + '/' + start + '/' + limit)
       .map(images => images.json());
   }
+
+  post(form_data): Observable<any> {
+    return this.http
+      .post(ImagesService.ENDPOINT, form_data)
+      .map(result => result.json());
+  }
 }
